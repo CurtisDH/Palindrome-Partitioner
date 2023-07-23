@@ -34,6 +34,10 @@ public class PartitionerTests : IDisposable
         "[[\"g\",\"e\",\"e\",\"k\",\"s\"]," +
         "[\"g\",\"ee\",\"k\",\"s\"]]")] // Multiple partitions - from brief
     [InlineData("aab", "[[\"a\",\"a\",\"b\"],[\"aa\",\"b\"]]")] // Multiple partitions - from brief
+    [InlineData("racecar",
+        "[[\"r\",\"a\",\"c\",\"e\",\"c\",\"a\",\"r\"]," +
+        "[\"r\",\"a\",\"cec\",\"a\",\"r\"]," +
+        "[\"r\",\"aceca\",\"r\"],[\"racecar\"]]")] // Multiple partitions
     public void PartitionTest(string input, string expectedJson)
     {
         var expected = JsonConvert.DeserializeObject<List<List<string>>>(expectedJson);
