@@ -9,27 +9,27 @@ public class Partitioner
         _checker = new PalindromeChecker();
     }
 
-    public List<List<string>> Partition(string s)
+    public List<List<string>> Partition(string input)
     {
         List<List<string>> result = new List<List<string>>();
-        PartitionRecursion(result, new List<string>(), s, 0);
+        PartitionRecursion(result, new List<string>(), input, 0);
         return result;
     }
 
-    private void PartitionRecursion(List<List<string>> result, List<string> tempList, string s, int start)
+    private void PartitionRecursion(List<List<string>> result, List<string> tempList, string input, int start)
     {
-        if (start == s.Length)
+        if (start == input.Length)
         {
             result.Add(new List<string>(tempList));
         }
         else
         {
-            for (int i = start; i < s.Length; i++)
+            for (int i = start; i < input.Length; i++)
             {
-                if (_checker.IsPalindrome(s, start, i))
+                if (_checker.IsPalindrome(input, start, i))
                 {
-                    tempList.Add(s.Substring(start, i + 1 - start));
-                    PartitionRecursion(result, tempList, s, i + 1);
+                    tempList.Add(input.Substring(start, i + 1 - start));
+                    PartitionRecursion(result, tempList, input, i + 1);
                     tempList.RemoveAt(tempList.Count - 1); // backtrack
                 }
             }
