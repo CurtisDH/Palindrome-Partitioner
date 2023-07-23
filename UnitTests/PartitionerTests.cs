@@ -48,47 +48,45 @@ public class PartitionerTests : IDisposable
 
     private static IEnumerable<object[]> TestData()
     {
-        yield return new object[]
+        return new[]
         {
-            "", new List<List<string>> { new List<string>() }
-        };
-
-        yield return new object[]
-        {
-            "a", new List<List<string>> { new List<string> { "a" } }
-        };
-
-        yield return new object[]
-        {
-            "abc", new List<List<string>> { new List<string> { "a", "b", "c" } }
-        };
-
-        yield return new object[]
-        {
-            "geeks", new List<List<string>>
+            new object[]
             {
-                new List<string> { "g", "e", "e", "k", "s" },
-                new List<string> { "g", "ee", "k", "s" }
-            }
-        };
-
-        yield return new object[]
-        {
-            "aab", new List<List<string>>
+                "", new List<List<string>> { new List<string>() }
+            },
+            new object[]
             {
-                new List<string> { "a", "a", "b" },
-                new List<string> { "aa", "b" }
-            }
-        };
-
-        yield return new object[]
-        {
-            "racecar", new List<List<string>>
+                "a", new List<List<string>> { new List<string> { "a" } }
+            },
+            new object[]
             {
-                new List<string> { "r", "a", "c", "e", "c", "a", "r" },
-                new List<string> { "r", "a", "cec", "a", "r" },
-                new List<string> { "r", "aceca", "r" },
-                new List<string> { "racecar" }
+                "abc", new List<List<string>> { new List<string> { "a", "b", "c" } }
+            },
+            new object[]
+            {
+                "geeks", new List<List<string>>
+                {
+                    new List<string> { "g", "e", "e", "k", "s" },
+                    new List<string> { "g", "ee", "k", "s" }
+                }
+            },
+            new object[]
+            {
+                "aab", new List<List<string>>
+                {
+                    new List<string> { "a", "a", "b" },
+                    new List<string> { "aa", "b" }
+                }
+            },
+            new object[]
+            {
+                "racecar", new List<List<string>>
+                {
+                    new List<string> { "r", "a", "c", "e", "c", "a", "r" },
+                    new List<string> { "r", "a", "cec", "a", "r" },
+                    new List<string> { "r", "aceca", "r" },
+                    new List<string> { "racecar" }
+                }
             }
         };
     }

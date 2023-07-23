@@ -1,91 +1,56 @@
 using System;
+using System.Collections.Generic;
 using Palindrome_Partitioner;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace UnitTests;
-
-public class MainTests : IDisposable
+namespace UnitTests
 {
-    private ITestOutputHelper _output;
-
-    public MainTests(ITestOutputHelper output)
+    public class MainTests : IDisposable
     {
-        _output = output;
-    }
+        private ITestOutputHelper _output;
 
-    public void Dispose()
-    {
-        _output = null;
-    }
-
-    [Theory]
-    [InlineData("", 0)]
-    [InlineData(" ", 0)]
-    [InlineData("a", 0)]
-    [InlineData("aab", 0)]
-    [InlineData("geeks", 0)]
-    [InlineData("racecar", 0)]
-    public void SingleArgTests(string arg, int expectedOutput)
-    {
-        string[] args = new string[] { arg };
-
-        var status = Program.Main(args);
-
-        _output.WriteLine($"input");
-        foreach (var a in args)
+        public MainTests(ITestOutputHelper output)
         {
-            _output.WriteLine($": {a}");
+            _output = output;
         }
 
-        _output.WriteLine($"Expected result: {expectedOutput}");
-
-        _output.WriteLine($"Actual result: {status}");
-        Assert.True(status == expectedOutput);
-    }
-
-    [Theory]
-    [InlineData("", "", -1)]
-    [InlineData(" ", "a", -1)]
-    [InlineData("a", "a", -1)]
-    [InlineData("aab", "a", -1)]
-    [InlineData("geeks", "", -1)]
-    [InlineData("racecar", "a", -1)]
-    public void MultipleArgTests(string arg, string arg2, int expectedOutput)
-    {
-        string[] args = new string[] { arg, arg2 };
-
-        var status = Program.Main(args);
-
-        _output.WriteLine($"input");
-        foreach (var a in args)
+        public void Dispose()
         {
-            _output.WriteLine($": {a}");
+            _output = null;
         }
 
-        _output.WriteLine($"Expected result: {expectedOutput}");
-
-        _output.WriteLine($"Actual result: {status}");
-        Assert.True(status == expectedOutput);
-    }
-
-    [Theory]
-    [InlineData(-1)]
-    public void NoArgTests(int expectedOutput)
-    {
-        string[] args = new string[] { };
-
-        var status = Program.Main(args);
-
-        _output.WriteLine($"input");
-        foreach (var a in args)
+        public static IEnumerable<object[]> TestData()
         {
-            _output.WriteLine($": {a}");
+            return new[]
+            {
+                new object[] { new string[] { "" }, 0 },
+                new object[] { new string[] { " " }, 0 },
+                new object[] { new string[] { "a" }, 0 },
+                new object[] { new string[] { "aab" }, 0 },
+                new object[] { new string[] { "geeks" }, 0 },
+                new object[] { new string[] { "racecar" }, 0 },
+                new object[] { new string[] { "", "" }, -1 },
+                new object[] { new string[] { " ", "a" }, -1 },
+                new object[] { new string[] { "a", "a" }, -1 },
+                new object[] { new string[] { "aab", "a" }, -1 },
+                new object[] { new string[] { "geeks", "" }, -1 },
+                new object[] { new string[] { "racecar", "a" }, -1 },
+                new object[] { new string[] { }, -1 }
+            };
         }
 
-        _output.WriteLine($"Expected result: {expectedOutput}");
+        [Theory]
+        [MemberData(nameof(TestData))]
+        public void MainMethodTests(string[] args, int expectedOutput)
+        {
+            var status = Program.Main(args);
 
-        _output.WriteLine($"Actual result: {status}");
-        Assert.True(status == expectedOutput);
+            _output.WriteLine($"Input: {string.Join(", ", args)}");
+            _output.WriteLine($"Expected result: {expectedOutput}");
+            _output.WriteLine($"Actual result: {status}");
+
+            Assert.True(status == expectedOutput);
+        }
     }
 }
