@@ -1,12 +1,14 @@
+using System;
 using Xunit.Abstractions;
 
-namespace Palindrome_Partitioner;
+namespace UnitTests;
 
-public class PalindromeChecker : IDisposable
+public class PalindromeCheckerTests : IDisposable
 {
     private ITestOutputHelper _output;
 
-    public PalindromeChecker(ITestOutputHelper output)
+
+    public PalindromeCheckerTests(ITestOutputHelper output)
     {
         _output = output;
     }
