@@ -17,7 +17,7 @@
             }
 
             var partitioner = new Partitioner();
-            var input = "geeks";
+            var input = args[0];
 
             // for accurate comparisons
             input = input.ToLower();
