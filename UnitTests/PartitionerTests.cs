@@ -24,26 +24,14 @@ public class PartitionerTests : IDisposable
     }
 
 
-    // xunit arguments have to be constant expressions & cant be complex types so serializing with json is my quick
-    // workaround. // TODO if theres time refactor this
     [Theory]
-    [InlineData("", "[[]]")] // test empty string, 
-    [InlineData("a", "[[\"a\"]]")] // single character
-    [InlineData("abc", "[[\"a\",\"b\",\"c\"]]")] // string with all distinct chars
-    [InlineData("geeks",
-        "[[\"g\",\"e\",\"e\",\"k\",\"s\"]," +
-        "[\"g\",\"ee\",\"k\",\"s\"]]")] // Multiple partitions - from brief
-    [InlineData("aab", "[[\"a\",\"a\",\"b\"],[\"aa\",\"b\"]]")] // Multiple partitions - from brief
-    [InlineData("racecar",
-        "[[\"r\",\"a\",\"c\",\"e\",\"c\",\"a\",\"r\"]," +
-        "[\"r\",\"a\",\"cec\",\"a\",\"r\"]," +
-        "[\"r\",\"aceca\",\"r\"],[\"racecar\"]]")] // Multiple partitions
-    public void PartitionTest(string input, string expectedJson)
+    [MemberData(nameof(TestData))]
+    public void PartitionTest(string input, List<List<string>> expected)
     {
-        var expected = JsonConvert.DeserializeObject<List<List<string>>>(expectedJson);
         var result = _partitioner.Partition(input);
 
         _output.WriteLine($"Tested string: '{input}'");
+        var expectedJson = JsonConvert.SerializeObject(expected);
         _output.WriteLine($"Expected result: {expectedJson}");
         var actualJson = JsonConvert.SerializeObject(result);
         _output.WriteLine($"Actual result: {actualJson}");
@@ -55,5 +43,53 @@ public class PartitionerTests : IDisposable
     {
         _partitioner = null;
         _output = null;
+    }
+
+
+    private static IEnumerable<object[]> TestData()
+    {
+        yield return new object[]
+        {
+            "", new List<List<string>> { new List<string>() }
+        };
+
+        yield return new object[]
+        {
+            "a", new List<List<string>> { new List<string> { "a" } }
+        };
+
+        yield return new object[]
+        {
+            "abc", new List<List<string>> { new List<string> { "a", "b", "c" } }
+        };
+
+        yield return new object[]
+        {
+            "geeks", new List<List<string>>
+            {
+                new List<string> { "g", "e", "e", "k", "s" },
+                new List<string> { "g", "ee", "k", "s" }
+            }
+        };
+
+        yield return new object[]
+        {
+            "aab", new List<List<string>>
+            {
+                new List<string> { "a", "a", "b" },
+                new List<string> { "aa", "b" }
+            }
+        };
+
+        yield return new object[]
+        {
+            "racecar", new List<List<string>>
+            {
+                new List<string> { "r", "a", "c", "e", "c", "a", "r" },
+                new List<string> { "r", "a", "cec", "a", "r" },
+                new List<string> { "r", "aceca", "r" },
+                new List<string> { "racecar" }
+            }
+        };
     }
 }
