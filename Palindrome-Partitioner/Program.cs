@@ -16,6 +16,8 @@
                 return -1;
             }
 
+            var partitioner = new Partitioner();
+            
 
             return 0;
         }
