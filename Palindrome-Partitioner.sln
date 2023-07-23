@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Palindrome-Partitioner", "Palindrome-Partitioner\Palindrome-Partitioner.csproj", "{4A8D147E-7181-45D5-B209-FAA373E87D73}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{CCD44B1E-E5E6-4AC6-9BA4-E18A8EAB6C7C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4A8D147E-7181-45D5-B209-FAA373E87D73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A8D147E-7181-45D5-B209-FAA373E87D73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A8D147E-7181-45D5-B209-FAA373E87D73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A8D147E-7181-45D5-B209-FAA373E87D73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCD44B1E-E5E6-4AC6-9BA4-E18A8EAB6C7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCD44B1E-E5E6-4AC6-9BA4-E18A8EAB6C7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCD44B1E-E5E6-4AC6-9BA4-E18A8EAB6C7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCD44B1E-E5E6-4AC6-9BA4-E18A8EAB6C7C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
