@@ -1,17 +1,18 @@
-using Xunit.Abstractions;
-
 namespace Palindrome_Partitioner;
 
-public class PalindromeChecker : IDisposable
+public class PalindromeChecker
 {
-    private ITestOutputHelper _output;
-
-    public PalindromeChecker(ITestOutputHelper output)
+    public bool IsPalindrome(string input, int low, int high)
     {
-        _output = output;
-    }
+        while (low < high)
+        {
+            // two-pointer algorithm -- O(n)
+            if (input[low++] != input[high--])
+            {
+                return false;
+            }
+        }
 
-    public void Dispose()
-    {
+        return true;
     }
 }

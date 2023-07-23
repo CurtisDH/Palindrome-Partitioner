@@ -10,14 +10,24 @@
         {
             // to meet requirement:
             // command-line application that takes a single string as an argument
-            if (args.Length != 1)
-            {
-                Console.WriteLine("Invalid number of arguments");
-                return -1;
-            }
+            // if (args.Length != 1)
+            // {
+            //     Console.WriteLine("Invalid number of arguments");
+            //     return -1;
+            // }
 
             var partitioner = new Partitioner();
-            
+            var input = "geeks";
+
+            // for accurate comparisons
+            input = input.ToLower();
+            var p = partitioner.Partition(input);
+
+            foreach (List<string> partition in p)
+            {
+                Console.WriteLine("[" + string.Join(", ", partition) + "]");
+            }
+
 
             return 0;
         }
