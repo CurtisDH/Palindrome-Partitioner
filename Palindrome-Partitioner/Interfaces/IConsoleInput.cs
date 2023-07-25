@@ -1,4 +1,4 @@
-namespace Palindrome_Partitioner;
+namespace Palindrome_Partitioner.Interfaces;
 
 public interface IConsoleInput
 {

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Moq;
 using Palindrome_Partitioner;
+using Palindrome_Partitioner.Interfaces;
 using Xunit;
 using Xunit.Abstractions;
 
