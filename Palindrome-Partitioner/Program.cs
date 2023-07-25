@@ -2,34 +2,22 @@
 {
     public static class Program
     {
-        /*Please spend no more than 2-3 hours creating the following C# .NET 6 or a Javascript solution to
-         calculate palindrome partitions consisting of a .net core command-line application that takes a single string 
-         as an argument then writes to the command line all possible palindrome partitioning, e.g. "aab" would return 
-         aa,b and a,a,b and "geeks" would return g,e,e,k,s and g,ee,k,s.*/
-        public static int Main(string[] args)
+        public static void Main(string[] args)
         {
-            // to meet requirement:
-            // command-line application that takes a single string as an argument
-            if (args.Length != 1)
-            {
-                Console.WriteLine("Invalid number of arguments");
-                return -1;
-            }
+            var inputHandler = new InputHandler(args, new ConsoleInput());
+            var input = inputHandler.GetUserInput();
 
             var partitioner = new Partitioner();
-            var input = args[0];
 
             // for accurate comparisons
+            // we could also filter white space, or split the string. not sure if this is a necessary requirement.
             input = input.ToLower();
-            var p = partitioner.Partition(input);
+            var partitions = partitioner.Partition(input);
 
-            foreach (List<string> partition in p)
+            foreach (List<string> partition in partitions)
             {
-                Console.WriteLine("[" + string.Join(", ", partition) + "]");
+                Console.WriteLine($"[{string.Join(", ", partition)}]");
             }
-
-
-            return 0;
         }
     }
 }
